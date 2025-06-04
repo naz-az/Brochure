@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasruddin Azlan - Enterprise Web Development Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .brochure-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 2px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .header .name {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .title {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            letter-spacing: 0.01em;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            color: #cbd5e1;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .icon {
+            font-size: 1.1em;
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            color: #1e40af;
+            border: 2px solid currentColor;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        .section:hover .icon {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .pricing-section:hover .icon {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Dark blue icons for all sections */
+        .section:nth-child(1) .icon {
+            color: #1e40af;
+        }
+
+        .section:nth-child(1):hover .icon {
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .section:nth-child(2) .icon {
+            color: #1e40af;
+        }
+
+        .section:nth-child(2):hover .icon {
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .pricing-section .section:nth-child(1) .icon {
+            color: #1e40af;
+        }
+
+        .pricing-section .section:nth-child(1):hover .icon {
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .section-description {
+            font-size: 1.1em;
+            color: #475569;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .question-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 24px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-item:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .question-item::before {
+            content: '?';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        /* Different colors for question cards */
+        .question-item:nth-child(1)::before {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .question-item:nth-child(1):hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .question-item:nth-child(2)::before {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .question-item:nth-child(2):hover {
+            border-color: #10b981;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+        }
+
+        .question-item:nth-child(3)::before {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .question-item:nth-child(3):hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .process-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .process-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .process-number {
+            position: relative;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1em;
+            margin: 0 auto 16px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Different colors for process cards */
+        .process-item:nth-child(1) .process-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .process-item:nth-child(1):hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .process-item:nth-child(2) .process-number {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .process-item:nth-child(2):hover {
+            border-color: #10b981;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+        }
+
+        .process-item:nth-child(3) .process-number {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .process-item:nth-child(3):hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+        }
+
+        .process-item:nth-child(4) .process-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .process-item:nth-child(4):hover {
+            border-color: #f59e0b;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+        }
+
+        .process-item:nth-child(5) .process-number {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        .process-item:nth-child(5):hover {
+            border-color: #06b6d4;
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
+        }
+
+        .process-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .process-description {
+            color: #475569;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .process-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .questions-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .process-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 16px;
+            }
+            
+            .question-item {
+                padding: 20px 16px;
+            }
+            
+            .process-item {
+                padding: 16px 12px;
+            }
+        }
+
+        .pricing-section {
+            background: #f8fafc;
+            margin: 0 -50px;
+            padding: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .subscription-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .subscription-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .subscription-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-color: #10b981;
+        }
+
+        .subscription-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .subscription-card .price-range {
+            font-size: 2.4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .subscription-card .card-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .subscription-card .card-description {
+            color: #cbd5e1;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .subscription-card .features-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .subscription-card .features-list li {
+            color: #e2e8f0;
+        }
+
+        .subscription-card .features-list li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .subscription-card .business-value {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .subscription-card .business-value h4 {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .subscription-card .business-value li {
+            color: #e2e8f0;
+        }
+
+        .subscription-card .business-value li::before {
+            color: #10b981;
+        }
+
+        .subscription-card .cost-factors {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #e2e8f0;
+        }
+
+        .subscription-card .cost-factors strong {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 60px 50px;
+            margin: 50px -50px -50px -50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(59,130,246,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-description {
+            font-size: 1.2em;
+            color: #cbd5e1;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.01em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+
+        @media (max-width: 768px) {
+            .brochure-container {
+                margin: 15px;
+                border-radius: 8px;
+            }
+            
+            .header, .content, .pricing-section, .cta-section {
+                padding: 30px 25px;
+            }
+            
+            .header .name {
+                font-size: 1.8em;
+            }
+            
+            .header .title {
+                font-size: 1.1em;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .pricing-card {
+                padding: 30px 25px;
+            }
+            
+            .cta-section {
+                margin: 30px -25px -25px -25px;
+            }
+            
+            .cta-title {
+                font-size: 1.8em;
+            }
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+
+        .pricing-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .price-range {
+            font-size: 2.4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .card-description {
+            color: #475569;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .features-section {
+            margin: 24px 0;
+        }
+
+        .features-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 24px;
+            color: #475569;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .business-value {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .business-value h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #e2e8f0;
+        }
+
+        .business-value ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .business-value li {
+            padding: 4px 0;
+            color: #cbd5e1;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .business-value li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .cost-factors {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .cost-factors strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            background: #f8fafc;
+            margin: 50px -50px 0 -50px;
+            padding: 50px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 32px;
+        }
+
+        .portfolio-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            min-height: 380px;
+        }
+
+        .portfolio-preview {
+            height: 120px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .portfolio-preview::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: #ffffff;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .preview-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .preview-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+        }
+
+        .portfolio-info {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .portfolio-type {
+            font-size: 0.9em;
+            color: #3b82f6;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-description {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-features {
+            margin-bottom: 0;
+        }
+
+        .portfolio-features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .portfolio-features-list li {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .portfolio-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white !important;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            display: inline-block;
+            text-align: center;
+            letter-spacing: 0.01em;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .portfolio-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+            color: white !important;
+            text-decoration: none !important;
+        }
+
+        /* Color-specific button styles */
+        .portfolio-card:nth-child(1) .portfolio-button {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+        }
+
+        .portfolio-card:nth-child(1) .portfolio-button:hover {
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%) !important;
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4) !important;
+        }
+
+        .portfolio-card:nth-child(2) .portfolio-button {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+        }
+
+        .portfolio-card:nth-child(2) .portfolio-button:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%) !important;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4) !important;
+        }
+
+        .portfolio-card:nth-child(3) .portfolio-button {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%) !important;
+        }
+
+        .portfolio-card:nth-child(3) .portfolio-button:hover {
+            background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%) !important;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4) !important;
+        }
+
+        .portfolio-card:nth-child(4) .portfolio-button {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%) !important;
+        }
+
+        .portfolio-card:nth-child(4) .portfolio-button:hover {
+            background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%) !important;
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4) !important;
+        }
+
+        .portfolio-card:nth-child(5) .portfolio-button {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%) !important;
+        }
+
+        .portfolio-card:nth-child(5) .portfolio-button:hover {
+            background: linear-gradient(135deg, #0e7490 0%, #155e75 100%) !important;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.4) !important;
+        }
+
+        /* Preview color themes */
+        .portfolio-card:nth-child(1) .portfolio-preview {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .portfolio-card:nth-child(1) .preview-icon {
+            background: #059669;
+            color: white;
+        }
+
+        .portfolio-card:nth-child(2) .portfolio-preview {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+        }
+
+        .portfolio-card:nth-child(2) .preview-icon {
+            background: #dc2626;
+            color: white;
+        }
+
+        .portfolio-card:nth-child(3) .portfolio-preview {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+        }
+
+        .portfolio-card:nth-child(3) .preview-icon {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .portfolio-card:nth-child(4) .portfolio-preview {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+        }
+
+        .portfolio-card:nth-child(4) .preview-icon {
+            background: #ea580c;
+            color: white;
+        }
+
+        .portfolio-card:nth-child(5) .portfolio-preview {
+            background: linear-gradient(135deg, #ecfeff 0%, #a5f3fc 100%);
+        }
+
+        .portfolio-card:nth-child(5) .preview-icon {
+            background: #0891b2;
+            color: white;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: #3b82f6;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .portfolio-card:nth-child(1) .portfolio-type { color: #059669; }
+        .portfolio-card:nth-child(1)::before { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+        .portfolio-card:nth-child(1):hover { border-color: #059669; }
+
+        .portfolio-card:nth-child(2) .portfolio-type { color: #dc2626; }
+        .portfolio-card:nth-child(2)::before { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); }
+        .portfolio-card:nth-child(2):hover { border-color: #dc2626; }
+
+        .portfolio-card:nth-child(3) .portfolio-type { color: #7c3aed; }
+        .portfolio-card:nth-child(3)::before { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); }
+        .portfolio-card:nth-child(3):hover { border-color: #7c3aed; }
+
+        .portfolio-card:nth-child(4) .portfolio-type { color: #ea580c; }
+        .portfolio-card:nth-child(4)::before { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
+        .portfolio-card:nth-child(4):hover { border-color: #ea580c; }
+
+        .portfolio-card:nth-child(5) .portfolio-type { color: #0891b2; }
+        .portfolio-card:nth-child(5)::before { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); }
+        .portfolio-card:nth-child(5):hover { border-color: #0891b2; }
+
+        /* Different colors for main pricing cards */
+        .pricing-grid .pricing-card:nth-child(2) .price-range {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-grid .pricing-card:nth-child(2)::before {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+        }
+
+        .pricing-grid .pricing-card:nth-child(2):hover {
+            border-color: #ea580c;
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.15);
+        }
+
+        .pricing-grid .pricing-card:nth-child(2) .business-value {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+        }
+
+        .pricing-grid .pricing-card:nth-child(2) .business-value li::before {
+            color: #f97316;
+        }
+
+        .pricing-grid .pricing-card:nth-child(2) .features-list li::before {
+            color: #ea580c;
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure-container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">Web Development Consultant</h1>
+                <p class="title">Nasruddin Azlan</p>
+                <p class="tagline">Delivering enterprise-grade web solutions that drive business growth and digital transformation</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21L16.65 16.65"/>
+                            <circle cx="11" cy="8" r="2"/>
+                        </svg>
+                    </span>
+                    Understanding Your Needs
+                </h2>
+                <!-- <p class="section-description">You may be interested in improving your current website. I wanted to personally reach out and explore how I can assist with that.</p> -->
+                <p class="section-description">To get started, I'd like to understand more about what you're looking for:</p>
+                <div class="questions-grid">
+                    <div class="question-item">Are there any specific features or functionality you'd like to add?</div>
+                    <div class="question-item">Do you have reference websites or styles in mind?</div>
+                    <div class="question-item">What is your ideal timeline for completing the project?</div>
+                </div>
+                <p style="margin-top: 20px; font-style: italic; color: #64748b;">The more detail you can provide, the better I can tailor the solution to fit your exact requirements.</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                    </span>
+                    My Approach
+                </h2>
+                <p class="section-description">Here's a brief overview of how I typically manage website projects:</p>
+                <div class="process-grid">
+                    <div class="process-item">
+                        <div class="process-number">1</div>
+                        <div class="process-title">Initial Consultation</div>
+                        <div class="process-description">Discussion on your goals, content, design ideas, and technical needs.</div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">2</div>
+                        <div class="process-title">Proposal & Timeline</div>
+                        <div class="process-description">Estimation of the workload and sharing of a clear quotation with realistic timeline.</div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">3</div>
+                        <div class="process-title">Design & Development</div>
+                        <div class="process-description">Proposal of initial concept/mockup for your review.</div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">4</div>
+                        <div class="process-title">Revisions</div>
+                        <div class="process-description">Provision of your feedback and request up to 5 rounds of revisions.</div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-number">5</div>
+                        <div class="process-title">Final Delivery</div>
+                        <div class="process-description">Upon your satisfaction, handing over the fully functional website along with documentation and support.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <h2 class="section-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                            <path d="M9 14h6"/>
+                            <path d="M9 18h6"/>
+                        </svg>
+                    </span>
+                    Website Development Packages
+                </h2>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="price-range">$1,000 – $2,500</div>
+                        <h3 class="card-title">General Informative Website</h3>
+                        <p class="card-description">To provide static information about the business, such as services, contact info, and company background.</p>
+                        
+                        <div class="features-section">
+                            <h4 class="features-title">Key Features</h4>
+                            <ul class="features-list">
+                                <li>Home, About, Services, Contact pages</li>
+                                <li>Interactive elements and micro-animations</li>
+                                <li>Mobile responsive design</li>
+                                <li>Contact form or email link</li>
+                                <li>Minimal or no custom development</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="business-value">
+                            <h4>Business Value</h4>
+                            <ul>
+                                <li>Establishes better online presence</li>
+                                <li>Builds credibility and professional image</li>
+                                <li>Suitable for businesses that don't need customer interaction beyond info</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cost-factors">
+                            <strong>Factors Affecting Cost:</strong> Custom design vs. pre-made template, number of pages, client's readiness (e.g., if they provide content/images).
+                        </div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="price-range">$3,000+</div>
+                        <h3 class="card-title">More Advanced Website</h3>
+                        <p class="card-description">To drive interaction, automate processes, personalize experiences, or generate business leads or sales.</p>
+                        
+                        <div class="features-section">
+                            <h4 class="features-title">Key Features</h4>
+                            <ul class="features-list">
+                                <li>All basic features plus:</li>
+                                <li>Custom UI/UX design</li>
+                                <li>Dynamic content (e.g., blogs, digital product catalogue, news, events)</li>
+                                <li>User registration/login</li>
+                                <li>E-commerce functionality (online store, cart, payment gateway)</li>
+                                <li>Integrations (CRM, email marketing tools, analytics)</li>
+                                <li>Custom-built components (dashboards, calculators, booking systems)</li>
+                                <li>SEO optimization and performance tuning</li>
+                                <li>Advanced security features</li>
+                                <li>Multi-language or localization support</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="business-value">
+                            <h4>Business Value</h4>
+                            <ul>
+                                <li>Drives conversions (leads, sales, bookings)</li>
+                                <li>Offers better customer experience</li>
+                                <li>Automates manual processes</li>
+                                <li>Provides analytics to improve marketing and decision-making</li>
+                                <li>Positions brand as more professional and scalable</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cost-factors">
+                            <strong>Factors Affecting Cost:</strong> Number and complexity of features, amount of custom design/development, CMS vs fully custom-built site (e.g., Laravel, React), revisions, maintenance, SEO, etc.
+                        </div>
+                    </div>
+
+                    <div class="subscription-card">
+                        <div class="price-range">$100/month</div>
+                        <h3 class="card-title">Monthly Maintenance Subscription</h3>
+                        <p class="card-description">Keep your website running smoothly with ongoing maintenance and support services.</p>
+                        
+                        <div class="features-section">
+                            <h4 class="features-title">Monthly Services Include</h4>
+                            <ul class="features-list">
+                                <li>Regular security updates and patches</li>
+                                <li>Plugin and software updates</li>
+                                <li>Performance monitoring and optimization</li>
+                                <li>Daily automated backups</li>
+                                <li>Content updates (up to 2 hours per month)</li>
+                                <li>Technical support and troubleshooting</li>
+                                <li>Monthly performance reports</li>
+                                <li>Priority support response</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="business-value">
+                            <h4>Subscription Benefits</h4>
+                            <ul>
+                                <li>Peace of mind with professional website care</li>
+                                <li>Prevents security vulnerabilities and downtime</li>
+                                <li>Maintains optimal website performance</li>
+                                <li>Focus on your business while we handle the technical aspects</li>
+                                <li>Cost-effective compared to emergency fixes</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cost-factors">
+                            <strong>Note:</strong> Subscription can be added to any website package or existing websites. Cancel anytime with 30-day notice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-section">
+                <h2 class="section-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </span>
+                    Portfolio Examples
+                </h2>
+                <p class="section-description">Explore some of my recent work showcasing different industries and design approaches. Each project demonstrates custom solutions tailored to specific business needs.</p>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-card">
+                        <div class="portfolio-preview">
+                            <div class="preview-content">
+                                <div class="preview-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/>
+                                        <polyline points="6,6 12,12 18,6"/>
+                                    </svg>
+                                </div>
+                                <div>Corporate Website Preview</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <div class="portfolio-info">
+                                <div class="portfolio-type">Corporate</div>
+                                <h3 class="portfolio-title">Corporate Business Solution</h3>
+                                <p class="portfolio-description">A sophisticated corporate website featuring professional design, comprehensive service portfolios, and seamless user experience for B2B clients.</p>
+                                <div class="portfolio-features">
+                                    <ul class="portfolio-features-list">
+                                        <li>Professional Design</li>
+                                        <li>Service Portfolio</li>
+                                        <li>Client Portal</li>
+                                        <li>Contact System</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://corporate-variant.vercel.app/" target="_blank" class="portfolio-button">View Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card">
+                        <div class="portfolio-preview">
+                            <div class="preview-content">
+                                <div class="preview-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 10 9 9 5.16 1 9-3.45 9-9V7l-10-5z"/>
+                                        <path d="M8 14l2 2 4-4"/>
+                                    </svg>
+                                </div>
+                                <div>Enterprise Platform Preview</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <div class="portfolio-info">
+                                <div class="portfolio-type">Enterprise</div>
+                                <h3 class="portfolio-title">Global Enterprise Platform</h3>
+                                <p class="portfolio-description">Large-scale enterprise solution with multi-regional support, advanced analytics, and comprehensive business management tools.</p>
+                                <div class="portfolio-features">
+                                    <ul class="portfolio-features-list">
+                                        <li>Multi-Regional</li>
+                                        <li>Analytics Dashboard</li>
+                                        <li>User Management</li>
+                                        <li>API Integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://global-enterprise-variant.vercel.app/" target="_blank" class="portfolio-button">View Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card">
+                        <div class="portfolio-preview">
+                            <div class="preview-content">
+                                <div class="preview-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                    </svg>
+                                </div>
+                                <div>Business Solutions Preview</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <div class="portfolio-info">
+                                <div class="portfolio-type">Business</div>
+                                <h3 class="portfolio-title">JDT Enterprise Solutions</h3>
+                                <p class="portfolio-description">Custom enterprise application designed for JDT with specialized workflow management, reporting tools, and integrated business processes.</p>
+                                <div class="portfolio-features">
+                                    <ul class="portfolio-features-list">
+                                        <li>Workflow Management</li>
+                                        <li>Custom Reports</li>
+                                        <li>Process Automation</li>
+                                        <li>Security Features</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://jdt-enterprise.vercel.app/" target="_blank" class="portfolio-button">View Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card">
+                        <div class="portfolio-preview">
+                            <div class="preview-content">
+                                <div class="preview-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9 17 14.74 18.18 21.02 12 17.77 5.82 21.02 7 14.74 2 9 8.91 8.26 12 2"/>
+                                    </svg>
+                                </div>
+                                <div>Tech Platform Preview</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <div class="portfolio-info">
+                                <div class="portfolio-type">Technology</div>
+                                <h3 class="portfolio-title">Tech Fusion Platform</h3>
+                                <p class="portfolio-description">Innovative technology platform showcasing cutting-edge solutions, interactive demos, and comprehensive product catalogs for tech companies.</p>
+                                <div class="portfolio-features">
+                                    <ul class="portfolio-features-list">
+                                        <li>Interactive Demos</li>
+                                        <li>Product Catalog</li>
+                                        <li>Tech Solutions</li>
+                                        <li>Innovation Hub</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://tech-fusion-ten.vercel.app/" target="_blank" class="portfolio-button">View Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card">
+                        <div class="portfolio-preview">
+                            <div class="preview-content">
+                                <div class="preview-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"/>
+                                        <circle cx="6" cy="12" r="3"/>
+                                        <circle cx="18" cy="19" r="3"/>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                                    </svg>
+                                </div>
+                                <div>Design Portfolio Preview</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <div class="portfolio-info">
+                                <div class="portfolio-type">Design</div>
+                                <h3 class="portfolio-title">Creative Design Showcase</h3>
+                                <p class="portfolio-description">Modern design-focused website featuring creative portfolios, design services, and interactive galleries for design agencies and creative professionals.</p>
+                                <div class="portfolio-features">
+                                    <ul class="portfolio-features-list">
+                                        <li>Creative Portfolio</li>
+                                        <li>Interactive Gallery</li>
+                                        <li>Design Services</li>
+                                        <li>Modern UI/UX</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://design-variant.vercel.app/" target="_blank" class="portfolio-button">View Website →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Transform Your Digital Presence?</h2>
+                    <p class="cta-description">Let's discuss how I can help you achieve your business objectives through strategic web development solutions tailored to your unique requirements.</p>
+                    <a href="https://api.whatsapp.com/send?phone=600000000&text=Hello%20Nasruddin,%20I%20am%20interested%20in%20your%20web%20development%20services.%20I%20would%20like%20to%20schedule%20a%20consultation." target="_blank" class="cta-button">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhanced interactions for professional feel
+            const cards = document.querySelectorAll('.pricing-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-6px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Professional question item interactions
+            const questionItems = document.querySelectorAll('.question-item');
+            questionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.background = '#dbeafe';
+                    this.style.borderColor = '#2563eb';
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.style.borderColor = '';
+                    }, 500);
+                });
+            });
+
+            // Professional CTA interaction
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function(e) {
+                // Check if it's a WhatsApp link
+                if (this.href && this.href.includes('whatsapp.com')) {
+                    // Let the WhatsApp link work normally
+                    return true;
+                }
+                
+                // Only prevent default for non-WhatsApp links
+                e.preventDefault();
+                this.innerHTML = 'Request Submitted ✓';
+                this.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
+                setTimeout(() => {
+                    this.innerHTML = 'Schedule Consultation';
+                    this.style.background = '';
+                }, 2500);
+            });
+
+            // Smooth scroll reveal effect
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
